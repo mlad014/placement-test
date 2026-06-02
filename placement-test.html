@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Placement Test</title>
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 20px; background: #f8f9fa; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        h1, h2 { color: #222; }
+        .step { display: none; }
+        .step.active { display: block; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input, textarea, select { width: 100%; padding: 12px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 8px; }
+        .option { display: block; padding: 12px; margin: 8px 0; background: #f1f3f5; border-radius: 8px; cursor: pointer; border: 2px solid transparent; }
+        .option:hover { background: #e9ecef; }
+        .option.selected { background: #d0ebff; border-color: #0066ff; }
+        button { background: #0066ff; color: white; padding: 14px 28px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #0052cc; }
+        .progress { height: 6px; background: #e9ecef; border-radius: 3px; margin-bottom: 30px; }
+        .progress-bar { height: 6px; background: #0066ff; border-radius: 3px; transition: width 0.3s; }
+        .nav-buttons { display: flex; justify-content: space-between; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>English Placement Test</h1>
+        <p>This test helps us create your personalized 3-month learning plan. It takes about 12-15 minutes.</p>
+        
+        <div class="progress">
+            <div class="progress-bar" id="progressBar" style="width: 20%"></div>
+        </div>
+
+        <!-- STEP 1: Personal Info -->
+        <div id="step1" class="step active">
+            <h2>Step 1: Basic Information</h2>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" required>
+            </div>
+            <button onclick="nextStep(2)">Continue</button>
+        </div>
+
+        <!-- STEP 2: Grammar & Vocabulary Quiz -->
+        <div id="step2" class="step">
+            <h2>Step 2: Grammar & Vocabulary (Click your answer)</h2>
+            
+            <div class="form-group">
+                <label>1. She ___ to the market every Saturday.</label>
+                <div class="option" onclick="selectOption(this, 'q1', 'go')">go</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'goes')">goes</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'going')">going</div>
+                <div class="option" onclick="selectOption(this, 'q1', 'gone')">gone</div>
+            </div>
+
+            <div class="form-group">
+                <label>2. I have been waiting ___ 2 hours.</label>
+                <div class="option" onclick="selectOption(this, 'q2', 'since')">since</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'for')">for</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'during')">during</div>
+                <div class="option" onclick="selectOption(this, 'q2', 'while')">while</div>
+            </div>
+
+            <div class="form-group">
+                <label>3. The meeting was ___ by the manager.</label>
+                <div class="option" onclick="selectOption(this, 'q3', 'cancel')">cancel</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'cancelling')">cancelling</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'cancelled')">cancelled</div>
+                <div class="option" onclick="selectOption(this, 'q3', 'cancels')">cancels</div>
+            </div>
+
+            <div class="form-group">
+                <label>4. Choose the correct word: "He gave me a very ___ advice."</label>
+                <div class="option" onclick="selectOption(this, 'q4', 'good')">good</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'well')">well</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'best')">best</div>
+                <div class="option" onclick="selectOption(this, 'q4', 'better')">better</div>
+            </div>
+
+            <div class="nav-buttons">
+                <button onclick="prevStep(1)">Back</button>
+                <button onclick="nextStep(3)">Next</button>
+            </div>
+        </div>
+
+        <!-- STEP 3: Reading Comprehension -->
+        <div id="step3" class="step">
+            <h2>Step 3: Reading Comprehension</h2>
+            <p><strong>Read the text and answer the questions:</strong></p>
+            <p style="background:#f8f9fa; padding:15px; border-radius:8px;">
+                Remote work has become very popular after 2020. Many companies realized that employees can be productive from home. 
+                However, some managers worry about communication and team spirit. 
+                A recent study showed that 65% of workers prefer hybrid models (some days in office, some days at home).
+            </p>
+
+            <div class="form-group">
+                <label>1. When did remote work become very popular?</label>
+                <div class="option" onclick="selectOption(this, 'r1', 'Before 2020')">Before 2020</div>
+                <div class="option" onclick="selectOption(this, 'r1', 'After 2020')">After 2020</div>
+                <div class="option" onclick="selectOption(this, 'r1', 'In 2015')">In 2015</div>
+            </div>
+
+            <div class="form-group">
+                <label>2. What do 65% of workers prefer?</label>
+                <div class="option" onclick="selectOption(this, 'r2', 'Full remote work')">Full remote work</div>
+                <div class="option" onclick="selectOption(this, 'r2', 'Hybrid models')">Hybrid models</div>
+                <div class="option" onclick="selectOption(this, 'r2', 'Full office work')">Full office work</div>
+            </div>
+
+            <div class="nav-buttons">
+                <button onclick="prevStep(2)">Back</button>
+                <button onclick="nextStep(4)">Next</button>
+            </div>
+        </div>
+
+        <!-- STEP 4: Writing -->
+        <div id="step4" class="step">
+            <h2>Step 4: Writing</h2>
+            <div class="form-group">
+                <label>Write 6-8 sentences about your job or studies and why you want to improve your English.</label>
+                <textarea id="writing" rows="6" placeholder="Write here..." required></textarea>
+            </div>
+            <div class="nav-buttons">
+                <button onclick="prevStep(3)">Back</button>
+                <button onclick="nextStep(5)">Next</button>
+            </div>
+        </div>
+
+        <!-- STEP 5: Self-Assessment + Goals -->
+        <div id="step5" class="step">
+            <h2>Step 5: Self-Assessment & Goals</h2>
+            
+            <div class="form-group">
+                <label>How would you rate your current English level? (1 = Beginner, 10 = Very Advanced)</label>
+                <input type="number" id="level" min="1" max="10" value="5">
+            </div>
+
+            <div class="form-group">
+                <label>How comfortable are you speaking English? (1-10)</label>
+                <input type="number" id="speaking" min="1" max="10" value="5">
+            </div>
+
+            <div class="form-group">
+                <label>How comfortable are you understanding fast English? (1-10)</label>
+                <input type="number" id="listening" min="1" max="10" value="5">
+            </div>
+
+            <div class="form-group">
+                <label>What is your main goal with English?</label>
+                <textarea id="goal" rows="3" placeholder="Example: Get a better job, travel, study abroad..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>What do you struggle with the most?</label>
+                <textarea id="struggles" rows="3" placeholder="Grammar, vocabulary, speaking confidently, listening..."></textarea>
+            </div>
+
+            <div class="nav-buttons">
+                <button onclick="prevStep(4)">Back</button>
+                <button onclick="submitTest()">Submit Test</button>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success" class="step" style="text-align:center; padding:40px;">
+            <h2>Thank you!</h2>
+            <p>Your test has been submitted successfully. We will send you your personalized 3-month plan soon.</p>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        let answers = {};
+
+        function updateProgress() {
+            const progress = (currentStep / totalSteps) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step' + step).classList.add('active');
+            currentStep = step;
+            updateProgress();
+        }
+
+        function nextStep(step) {
+            showStep(step);
+        }
+
+        function prevStep(step) {
+            showStep(step);
+        }
+
+        function selectOption(element, question, value) {
+            // Deselect others
+            const options = element.parentElement.querySelectorAll('.option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Select this one
+            element.classList.add('selected');
+            
+            // Save answer
+            answers[question] = value;
+        }
+
+        function submitTest() {
+            // Collect all data
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                level: document.getElementById('level').value,
+                speaking: document.getElementById('speaking').value,
+                listening: document.getElementById('listening').value,
+                writing: document.getElementById('writing').value,
+                goal: document.getElementById('goal').value,
+                struggles: document.getElementById('struggles').value,
+                grammar_answers: JSON.stringify(answers)
+            };
+
+            // Send to Web3Forms
+            const formData = new FormData();
+            formData.append("access_key", "96023abe-e5fe-4450-9fa3-ba44517a1418"); // ← Replace with your Web3Forms key
+            formData.append("subject", "New Placement Test Submission");
+            
+            for (let key in data) {
+                formData.append(key, data[key]);
+            }
+
+            fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showStep('success');
+                } else {
+                    alert("Error submitting. Please try again.");
+                }
+            })
+            .catch(() => {
+                alert("Error submitting. Please try again.");
+            });
+        }
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
